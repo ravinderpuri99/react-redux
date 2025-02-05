@@ -1,12 +1,15 @@
 import { useSelector } from "react-redux"
 import { selectAllUsers } from "../users/usersSlice"
+import { Link } from 'react-router-dom'
 
 const PostAuthor = ({ userId }) => {
     const users = useSelector(selectAllUsers)
 
     const author = users.find(user => user.id === userId)
 
-    return <span>by {author ? author.name : 'Unkwown author'}</span>
+    return <span>by {author 
+        ? <Link to={`/user/${userId}`}>{author.name}</Link> 
+        : 'Unkwown author'}</span>
 }
 
 export default PostAuthor
